@@ -40,7 +40,7 @@ namespace x264BatchEncoding
 
                                 string FFCmd = ff + profileStr + profileArr[profileInt] + " " + presetStr + presetArr[presetInt] + " " + CRFStr + CRFInt + " " + pix_fmtStr + pix_fmtArr[pix_fmtInt];
 
-                                outputFilename = inputFilenameNoExt + "_" + profileArr[profileInt] + "_" + presetArr[presetInt] + "_" + CRFInt + "_" + pix_fmtArr[pix_fmtInt] + "_" + encodeInt + ".mov";
+                                outputFilename = inputFilenameNoExt + "_" +profileInt+ profileArr[profileInt] + "_" + presetInt+presetArr[presetInt] + "_" + CRFInt + "_" + pix_fmtArr[pix_fmtInt] + "_" + encodeInt + ".mov";
 
                                 writeStrList.Add(FFCmd + " "+outputFilename);
                             }
@@ -50,11 +50,13 @@ namespace x264BatchEncoding
 
                     }
 
+                    File.WriteAllLines("0-" + profileInt + profileArr[profileInt] + presetInt +"-"+ presetInt+ presetArr[presetInt] + ".bat", writeStrList);
+                    writeStrList.Clear();
                 }
 
             } // last loop done
 
-            File.WriteAllLines("0-encode.bat", writeStrList);
+            
 
         }
         static void Main(string[] args)
