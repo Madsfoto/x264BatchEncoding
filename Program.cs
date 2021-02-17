@@ -35,8 +35,30 @@ namespace x264BatchEncoding
                         for (int pix_fmtInt = 0; pix_fmtInt < pix_fmtArr.Length; pix_fmtInt++)
                         {
                             for (int encodeInt = 0; encodeInt < 51; encodeInt++)
-                            {
-                                // add profile + format, preset and crf to FFmpeg comand, add encode number to output filename
+                            {// add profile + format, preset and crf to FFmpeg comand, add encode number to output filename
+
+                                // In baseline only yuv420p is supported
+                                if (profileInt==0 && pix_fmtInt!=0)
+                                {
+                                    break;
+                                }
+                                // in main and high, no 10 bit format is supported
+                                if((profileInt==1||profileInt==2) && (pix_fmtInt==3||pix_fmtInt==4||pix_fmtInt==5))
+                                {
+                                    break;
+                                }
+                                // in high10 only up to 420p10le is supported
+                                if(profileInt==3 && (pix_fmtInt==1||pix_fmtInt==2||pix_fmtInt==4||pix_fmtInt==5))
+                                {
+                                    break;
+                                }
+                                // high422 (should be named high10422, as it's high10 + 422 subsampling support
+                                if(profileInt==4 && (pix_fmtInt==2||pix_fmtInt==5))
+                                {
+                                    break;
+                                }
+                                // high444 supports everything
+
 
                                 string FFCmd = ff + profileStr + profileArr[profileInt] + " " + presetStr + presetArr[presetInt] + " " + CRFStr + CRFInt + " " + pix_fmtStr + pix_fmtArr[pix_fmtInt];
 
