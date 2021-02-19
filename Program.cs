@@ -49,13 +49,8 @@ namespace x264BatchEncoding
                             for (int encodeInt = 0; encodeInt < 51; encodeInt++)
                             {// add profile + format, preset and crf to FFmpeg comand, add encode number to output filename
 
-                                // In baseline only yuv420p is supported
-                                if (profileInt == 0 && (pix_fmtInt != 0 || CRFInt==0))
-                                {
-                                    break;
-                                }
-                                // in main and high, no 10 bit format or 422 or 444 subsampling is supported
-                                if ((profileInt == 1 || profileInt == 2) && (pix_fmtInt != 0 || CRFInt==0 ))
+                                // In baseline, main and high only yuv420p is supported, no 10 bit format or 422 or 444 subsampling is supported
+                                if ((profileInt == 0 || profileInt==1 || profileInt==2 ) && (pix_fmtInt != 0 || CRFInt==0))
                                 {
                                     break;
                                 }
