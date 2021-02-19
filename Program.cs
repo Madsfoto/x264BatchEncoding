@@ -84,7 +84,7 @@ namespace x264BatchEncoding
 
                     }
 
-                    File.WriteAllLines("0-" + profileInt + profileArr[profileInt] + presetInt + "-" + presetInt + presetArr[presetInt] + ".bat", writeStrList);
+                    File.WriteAllLines("0-" + profileInt + profileArr[profileInt] + "-" + presetInt + presetArr[presetInt] + ".bat", writeStrList);
                     writeStrList.Clear();
                 }
 
