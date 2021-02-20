@@ -66,10 +66,14 @@ namespace x264BatchEncoding
                                 }
                                 // high444, again high10444, supports everything
 
+                                string CRFIntStr = CRFInt.ToString("D2");
+                                string encodeIntStr = encodeInt.ToString("D2");
+
+                                
 
                                 string FFCmd = ff + profileStr + profileArr[profileInt] + " " + presetStr + presetArr[presetInt] + " " + CRFStr + CRFInt + " " + pix_fmtStr + pix_fmtArr[pix_fmtInt];
 
-                                outputFilename = inputFilenameNoExt + "_" + profileInt + profileArr[profileInt] + "_" + presetInt + presetArr[presetInt] + "_" + CRFInt + "_" + pix_fmtArr[pix_fmtInt] + "_" + encodeInt + ".mov";
+                                outputFilename = inputFilenameNoExt + "_" + profileInt + profileArr[profileInt] + "_" + presetInt + presetArr[presetInt] + "_" + CRFIntStr + "_" + pix_fmtArr[pix_fmtInt] + "_" + encodeIntStr + ".mov";
 
                                 writeStrList.Add(FFCmd + " " + outputFilename);
                             }
