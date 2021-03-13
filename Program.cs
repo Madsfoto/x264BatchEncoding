@@ -70,10 +70,18 @@ namespace x264BatchEncoding
                                 // high444, again high10444, supports everything
                                 #endregion
 
-                                // if profileInt3 -> only do CRF when format == 10 bit
+                                
                                 // if profileint4 -> only do CRF when format == 10 bit
 
-
+                                if (profileInt == 3 && CRFInt == 0 && pix_fmtInt == 0)
+                                {
+                                    break;
+                                }
+                                if (profileInt == 4 && CRFInt == 0 && (pix_fmtInt == 0 || pix_fmtInt==1 || pix_fmtInt==2) ) // pix_fmtInt == 2 is already tested above,
+                                                                                                                            // but it is also tested here for completeness
+                                {
+                                    break;
+                                }
 
 
                                 string CRFIntStr = CRFInt.ToString("D2");
